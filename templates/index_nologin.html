@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+    首页
+{% endblock %}
+
+{% block head %}
+    <style>
+        .nologin_img{
+            text-align: center;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}"
+{% endblock %}
+
+{% block content%}
+    <a href="{{ url_for('login') }}">
+        <img class="nologin_img" src="{{ url_for('static',filename='images/timg.jpg') }}">
+    </a>
+{% endblock %}

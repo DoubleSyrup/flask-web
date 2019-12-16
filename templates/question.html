@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}问答页面{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="form-container">
+            <div class="form-group">
+                <input name="title" type="text" class="form-control" placeholder="请输入标题" required>
+            </div>
+            <div class="form-group">
+                <textarea name="content" rows="10" class="form-control" placeholder="请输入文本内容" required></textarea>
+                <br>
+                <input name="content-img" type="file" multiple="multiple">
+            </div>
+            <div class="from-group">
+                <button class="btn btn-primary" >提交</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
