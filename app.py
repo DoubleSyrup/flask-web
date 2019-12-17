@@ -104,11 +104,11 @@ def regist():
 def question():
     # user_id = session.get('user_id')
     # if user_id:
-    #     return render_template('question.html')
+    #     return render_template('talking.html')
     # else:
     #     return render_template('login.html')
     if request.method == 'GET':
-        return render_template('question.html')
+        return render_template('talking.html')
     else:
         title = request.form.get('title')
         content = request.form.get('content')
