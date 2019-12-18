@@ -35,13 +35,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{ url_for('index') }}">首页 <span class="sr-only">(current)</span></a></li>
-                <li>
-                    {% if user %}
-                        <a href="{{ url_for('question') }}">论坛</a>
-                    {% else %}
-                        <a href="{{ url_for('login') }}">论坛</a>
-                    {% endif %}
-                </li>
+                <li><a href="{{ url_for('question') }}">论坛</a></li>
 {#                <li class="dropdown">#}
 {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"#}
 {#                       aria-expanded="false">导航 <span class="caret"></span></a>#}
