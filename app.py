@@ -23,7 +23,7 @@ app.secret_key=os.urandom(24)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
-#获取图片
+#获取用户上传图片，存储在本地路径，拼接url，将url存储进数据库
 def img_url():
     file_dir = 'D:/PycharmProject/flask-project/flask_zhiliao/static/user_images/'
     if not os.path.exists(file_dir):
@@ -43,6 +43,7 @@ def img_url():
 def page_not_found(e):
     return render_template("404.html")
 
+#发布的内容只有登录后才能查看
 @app.route('/')
 @login_limit
 def index():
@@ -120,7 +121,6 @@ def question():
         db.session.add(question)
         db.session.commit()
         return redirect(url_for('index'))
-
 
 @app.context_processor
 def my_context():
