@@ -2,7 +2,7 @@
 
 from flask import Flask,render_template,request,redirect,url_for,session,make_response,jsonify
 import config
-from models import User,Question
+from models import User,Question,Comment
 from exts import db
 import os
 from decorators import login_limit
@@ -77,6 +77,11 @@ def logout():
     session.pop('user_id')
     return redirect(url_for("login"))
 
+@app.route('/delete')
+@login_limit
+def delete_info():
+    pass
+
 @app.route('/regist',methods=['GET','POST'])
 def regist():
     if request.method == "GET":
@@ -100,6 +105,7 @@ def regist():
                 db.session.commit()
                 return "注册成功"
 
+
 @app.route('/question',methods=['GET','POST'])
 @login_limit
 def question():
@@ -121,6 +127,30 @@ def question():
         db.session.add(question)
         db.session.commit()
         return redirect(url_for('index'))
+
+
+@app.route('/detail/',methods=['GET','POST'])
+def talking_detail(talking_id):
+    comment_id = talking_id
+    #comment_id = request.args.get('talking_id')
+    question_detail = Question.query.filter(Question.id == comment_id).first()
+    return render_template('talking_detail.html',question=question_detail)
+
+
+@app.route('/comment',methods=['GET','POST'])
+def user_comment():
+    comment_content = request.form.get('user_comment')
+    question_id = request.form.get('question_id')
+    author_id = session['user_id']
+    comment = Comment(content=comment_content,question_id=question_id,author_id=author_id)
+
+    # user = User.query.filter(User.id == author_id).first()
+    # #comment.author = user
+    # Question.query.filter(Question.id == question_id).first()
+    db.session.add(comment)
+    db.session.commit()
+    return redirect(url_for('detail',question_id=question_id))
+
 
 @app.context_processor
 def my_context():

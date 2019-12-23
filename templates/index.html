@@ -15,7 +15,12 @@
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" class="avater">
             </div>
             <div class="question-group">
-                <p class="question-title"><a href="#">{{ question.title }}</a></p>
+                <p class="question-title">
+                    <a href="{{ url_for('talking_detail',talking_id=question.id)}}">{{ question.title }}</a>
+{#                    <form action="{{ url_for('delete_info') }}" method="post">#}
+{#                        <button type="submit" class="btn btn-secondary radius" style="float:right">删除</button>#}
+{#                    </form>#}
+                </p>
                 <p class="question-content">{{ question.content }}</p>
                 {% if question.imgurl == "../static/user_images/None" %}
                     <p></p>
